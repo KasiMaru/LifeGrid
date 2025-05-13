@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    ports:
+      - 5173:5173
+    volumes:
+      - .:/app
+      - /app/node_modules
+    develop:
+      watch:
+        - action: rebuild
+          path: package.json
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - node_modules/
